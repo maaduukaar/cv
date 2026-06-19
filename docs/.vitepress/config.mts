@@ -64,6 +64,24 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Разработка сайтов',
+            items: [
+              {
+                text: 'WordPress',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Введение',
+                    collapsed: true,
+                    items: [
+                      { text: 'Хостинг', link: '/ru/wordpress/hosting' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },            
+          {
             text: 'Доработка сайтов',
             items: [
               {
