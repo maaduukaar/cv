@@ -86,6 +86,13 @@ export default defineConfig({
             text: 'Доработка сайтов',
             items: [
               {
+                text: 'WordPress',
+                collapsed: false,
+                items: [
+                  { text: 'Р7-Офис API Документ Конструктора', link: '/ru/r7-document-api' }
+                ]
+              },
+              {
                 text: 'ModX',
                 collapsed: true,
                 items: [
