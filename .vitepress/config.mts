@@ -50,13 +50,17 @@ export default defineConfig({
         
         nav: [
           { text: 'Главная', link: '/ru/' },
+          { text: 'Q&A', link: '/ru/faq' },
           { text: 'Примеры', link: '/ru/markdown-examples' }
         ],
 
         sidebar: [
           {
             text: 'Обо мне',
-            link: '/ru/about-me'
+            items: [
+              { text: 'Обо мне', link: '/ru/about-me' },
+              { text: 'Вопросы и ответы (Q&A)', link: '/ru/faq' }
+            ]
           },
           {
             text: 'Автоматизация',
