@@ -93,7 +93,10 @@ export default defineConfig({
                 text: 'WordPress',
                 collapsed: false,
                 items: [
-                  { text: 'Р7-Офис API Документ Конструктора', link: '/ru/r7-document-api' }
+                  { text: 'Р7-Офис API Документ Конструктора', link: '/ru/r7-document-api' },
+                  { text: 'Выравнивание изображений (.aligncenter)', link: '/ru/r7-image-alignment' },
+                  { text: 'Оформление и нумерация подписей к фото', link: '/ru/r7-image-captions' },
+                  { text: 'Рескин и безопасность футера DashaMail', link: '/ru/r7-dashamail-footer' }
                 ]
               },
               {
