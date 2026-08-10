@@ -1,5 +1,7 @@
 # Р7-Офис: Рескин футера и безопасность формы подписки DashaMail <Badge type="tip" text="WordPress" /> <Badge type="warning" text="PHP 8 / AJAX" /> <Badge type="danger" text="Security Audit" />
 
+![Рескин футера и форма подписки DashaMail — Р7 центр поддержки](/images/r7-dashamail-footer-preview.png)
+
 ::: info 📋 Карточка проекта
 
 | | |
@@ -46,57 +48,6 @@
 
 ---
 
-## 💡 Пример наиболее сложной задачи: Task 05-4 / 05-5 — Секьюрити-аудит и устранение уязвимостей
-
-::: details 📋 Посмотреть полностью отчёт по безопасности и коду исправлений
-
-### Найденные уязвимости и их устранение
-
-#### 1. Захардкоженный API-ключ в коде темы <Badge type="danger" text="Critical" />
-
-* **Было:** API-ключ сервиса DashaMail прописан прямо в PHP-файле темы `dashamail/init.php`.
-* **Стало:** Ключ вынесен в `wp-config.php`:
-```php
-// wp-config.php
-define( 'DM_API_KEY', '...' ); // [!code ++]
-define( 'DM_LIST_ID', 12345 );  // [!code ++]
-```
-
-#### 2. Отсутствие CSRF-защиты (WordPress Nonce) <Badge type="warning" text="Medium" />
-
-* **Было:** Обработчик `dmAjaxAction` принимал POST-запросы без проверки источника. Любой сторонний сайт мог отправлять спам-запросы на `admin-ajax.php?action=dm_action`.
-* **Стало:** Внедрена проверка `wp_verify_nonce`:
-
-```php
-// 1. Передача nonce в JS через wp_localize_script
-wp_localize_script( 'dm-script', 'dm_ajax', [
-    'url'   => admin_url( 'admin-ajax.php' ),
-    'nonce' => wp_create_nonce( 'dm_subscribe_nonce' ) // [!code ++]
-] );
-
-// 2. Проверка в PHP-обработчике
-public function dmAjaxAction() {
-    if ( ! wp_verify_nonce( $_POST['nonce'] ?? '', 'dm_subscribe_nonce' ) ) { // [!code ++]
-        wp_send_json( [ 'status' => 'error', 'code' => 'forbidden' ] );
-        return;
-    }
-    // ... дальнейшая обработка email
-}
-```
-
-#### 3. Бесконечный таймаут cURL (Риск DoS-зависания) <Badge type="warning" text="Medium" />
-
-* **Было:** `CURLOPT_TIMEOUT => 0`. При зависании сервиса DashaMail воркеры PHP блокировались бессрочно.
-* **Стало:** Установлен таймаут в 5 секунд:
-```php
-curl_setopt( $ch, CURLOPT_TIMEOUT, 5 ); // [!code ++]
-curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 ); // [!code ++]
-```
-
-:::
-
----
-
 ## ⚡ Технические решения и ключевые сложности
 
 ### Сложность: Защита от спам-ботов через IP Rate-Limiting
@@ -128,6 +79,110 @@ function dm_check_rate_limit() {
     }
 }
 ```
+:::
+
+---
+
+## 🛡️ Секьюрити-аудит модуля DashaMail (`dashamail-security-review.md`)
+
+::: details 📋 Посмотреть полный отчёт по аудиту безопасности исходного кода
+
+### ✅ Что было в порядке в исходном коде
+* **Защита от прямого доступа к PHP-файлам:** Проверка `ABSPATH` в `init.php` и `forms/footer.php`.
+* **Экранирование URL в шаблоне:** Наличие `esc_url()` на путях к ассетам.
+* **Валидация email на сервере:** Использование `filter_var(..., FILTER_VALIDATE_EMAIL)` до передачи в API.
+* **Безопасный вывод AJAX-ответов:** `wp_send_json()` + `send_nosniff_header()`.
+
+---
+
+### 🔴 Критичные уязвимости
+
+#### 1. API-ключ захардкожен в файле темы <Badge type="danger" text="Critical" />
+* **Файл:** `themes/r7/dashamail/init.php`
+* **Проблема:** API-ключ DashaMail прописан прямо в исходном коде темы. Компрометация репозитория приводит к компрометации ключа рассылок.
+* **Решение:** Ключ и ID списка вынесены в `wp-config.php`:
+```php
+// wp-config.php
+define( 'DM_API_KEY', '...' );
+define( 'DM_LIST_ID', 12345 );
+```
+
+---
+
+### 🟡 Средние уязвимости
+
+#### 1. Отсутствие CSRF-защиты (nonce) на AJAX-эндпоинте <Badge type="warning" text="Medium" />
+* **Файлы:** `init.php`, `dm.js`
+* **Проблема:** Обработчик принимал POST-запросы без проверки источника. Сторонний сайт мог спамить базу мусорными адресами.
+* **Решение:** Внедрена проверка `wp_verify_nonce`:
+```php
+// В dm_enqueue_assets():
+'nonce' => wp_create_nonce( 'dm_subscribe' )
+
+// В dmAjaxAction():
+if ( ! wp_verify_nonce( $_POST['nonce'] ?? '', 'dm_subscribe' ) ) {
+    wp_send_json( [ 'status' => 'error', 'code' => 'forbidden' ] );
+}
+```
+
+#### 2. Отсутствие Rate-Limiting по IP <Badge type="warning" text="Medium" />
+* **Проблема:** Бот мог делать тысячи запросов в секунду, перегружая сервер cURL-запросами к внешнему API.
+* **Решение:** Внедрен Transient-based rate limit по IP адресам с приманкой (Honeypot).
+
+#### 3. Бесконечный таймаут cURL <Badge type="warning" text="Medium" />
+* **Проблема:** `CURLOPT_TIMEOUT => 0`. При зависании сервиса DashaMail воркеры PHP блокировались бессрочно.
+* **Решение:** Установлен разумный таймаут в 5 секунд:
+```php
+curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
+curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
+```
+
+---
+
+### 🟢 Незначительные замечания
+
+#### 1. `$_POST['email']` без проверки наличия ключа
+* **Проблема:** Запрос без параметра `email` вызывал `Warning` в логах сервера.
+* **Решение:** Безопасное чтение через `$_POST['email'] ?? ''`.
+
+#### 2. Устаревший jQuery API `.success()`
+* **Проблема:** Метод `.success()` удалён в jQuery 3.0+. Форма работала только благодаря `jQuery Migrate`.
+* **Решение:** Переведено на нативный метод `.done()`.
+
+---
+
+### 📊 Итоговая сводка ревью безопасности
+
+| Проблема | Уровень рисков | Статус исправления |
+|---|---|:---:|
+| API-ключ в исходном коде темы | 🔴 Критичное | ✅ Устранено (`wp-config.php`) |
+| Отсутствие CSRF nonce | 🟡 Среднее | ✅ Устранено (`wp_verify_nonce`) |
+| Отсутствие Rate-Limiting | 🟡 Среднее | ✅ Устранено (`Transient IP Limit`) |
+| Бесконечный таймаут cURL | 🟡 Среднее | ✅ Устранено (`CURLOPT_TIMEOUT = 5`) |
+| `$_POST['email']` без isset | 🟢 Незначительное | ✅ Устранено |
+| `.success()` вместо `.done()` | 🟢 Незначительное | ✅ Устранено |
+
+:::
+
+---
+
+## 📋 Отчёт по результатам интеграции (`dashamail-footer-report.txt`)
+
+::: details 📋 Посмотреть полностью отчёт по файлам и результатам тестирования
+
+### Список затронутых файлов темы
+* `themes/r7/functions.php` — активировано подключение модуля `dashamail` через `get_template_directory()`.
+* `themes/r7/footer.php` — статичная заглушка формы заменена вызовом `dm_footer_shortcode()`.
+* `themes/r7/dashamail/init.php` — обновлена инициализация, исправлен двойной тег `<?php`, переписана функция `dm_footer_shortcode()` под PHP-шаблон с буферизацией.
+* `themes/r7/dashamail/dm.js` — обновлён AJAX-обработчик: добавлена активация класса `.is-active` на успех, заменён устаревший `.success()` на `.done()` (для jQuery 3.7.1), убран Tilda-попап.
+* `themes/r7/dashamail/dm.css` — удалены устаревшие стили Tilda-форм.
+* `themes/r7/dashamail/forms/footer.php` — создан новый PHP-шаблон формы на базе актуальной вёрстки.
+
+### Результаты тестирования на dev-среде
+* Проведена полная проверка интерактивных состояний формы:
+  * При первой успешной подписке показывается красивый инлайн-блок «Спасибо за вашу подписку».
+  * При повторной попытке ввода того же email выводится сообщение «Вы уже подписаны на рассылку!».
+* Подтверждена передача данных: новые подписчики успешно добавляются по API в список DashaMail.
 :::
 
 ---

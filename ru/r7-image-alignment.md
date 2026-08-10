@@ -1,5 +1,7 @@
 # Р7-Офис: Выравнивание изображений по центру (.aligncenter) <Badge type="tip" text="WordPress" /> <Badge type="warning" text="CSS3" /> <Badge type="info" text="WYSIWYG / FAQ" />
 
+![Пример центрирования изображения — Р7 центр поддержки](/images/r7-image-alignment-preview.png)
+
 ::: info 📋 Карточка проекта
 
 | | |
