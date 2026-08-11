@@ -100,8 +100,9 @@ AI предложил усложнить архитектуру простого
 :::
 
 ::: info 🌐 Примеры сайтов
-- 🔗 [support.r7-office.ru/preview/](https://support.r7-office.ru/preview/) — разработка страниц технической документации R7-Office
-- 🔗 [струныма.рф](https://струныма.рф) — разработка сайта музыкальной студии
+- 🔗 [support.r7-office.ru](https://support.r7-office.ru/preview/) — разработка страницы скачивания альфа-версий продуктов АО Р7
+- 🔗 [hospital-spb.ru](https://hospital-spb.ru/services/alkogolizm/lechenie-alkogolizma-v-staczionare) — разработка сайта реабилитационного центра
+- 🔗 [струныма.рф](https://струныма.рф) — разработка сайта музыкальной группы
 :::
 
 
