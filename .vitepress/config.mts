@@ -101,6 +101,13 @@ export default defineConfig({
                 ]
               },
               {
+                text: 'PHP / Legacy',
+                collapsed: false,
+                items: [
+                  { text: 'Защита формы создания компаний', link: '/ru/contact-create-page' }
+                ]
+              },
+              {
                 text: 'ModX',
                 collapsed: true,
                 items: [
