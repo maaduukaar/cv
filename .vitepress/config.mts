@@ -1,8 +1,14 @@
 import { defineConfig } from 'vitepress'
+import { solarIconsMarkdownPlugin } from './solar-icons'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/cv/',
+  markdown: {
+    config(md) {
+      solarIconsMarkdownPlugin(md)
+    }
+  },
   locales: {
     root: {
       label: 'English',
@@ -10,24 +16,89 @@ export default defineConfig({
       title: "Max Shvedov",
       description: "Life Path in the World of Technology",
       themeConfig: {
+        outlineTitle: 'On this page',
+        darkModeSwitchLabel: 'Appearance',
+        sidebarMenuLabel: 'Menu',
+        returnToTopLabel: 'Back to top',
+        langMenuLabel: 'Change language',
+
+        docFooter: {
+          prev: 'Previous page',
+          next: 'Next page'
+        },
+
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Examples', link: '/markdown-examples' }
+          { text: 'Projects', link: '/#projects' },
+          { text: 'About', link: '/about-me' },
+          { text: 'Q&A', link: '/faq' }
         ],
 
         sidebar: [
           {
-            text: 'Examples',
+            text: 'About Me',
             items: [
-              { text: 'Markdown Examples', link: '/markdown-examples' },
-              { text: 'Runtime API Examples', link: '/api-examples' }
+              { text: 'About Me', link: '/about-me' },
+              { text: 'Questions and Answers (Q&A)', link: '/faq' }
+            ]
+          },
+          {
+            text: 'Automation',
+            items: [
+              { text: 'Content Processing', link: '/content-processing' }
+            ]
+          },
+          {
+            text: 'Website Development',
+            items: [
+              {
+                text: 'WordPress',
+                collapsed: true,
+                items: [
+                  {
+                    text: 'Introduction',
+                    collapsed: true,
+                    items: [
+                      { text: 'Hosting', link: '/wordpress/hosting' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            text: 'Website Enhancements',
+            items: [
+              {
+                text: 'WordPress',
+                collapsed: false,
+                items: [
+                  { text: 'R7 Office Document Builder API', link: '/r7-document-api' },
+                  { text: 'Category Template “FAQ: Questions and Answers”', link: '/r7-category-faq' },
+                  { text: 'Image Alignment (.aligncenter)', link: '/r7-image-alignment' },
+                  { text: 'Photo Caption Styling and Numbering', link: '/r7-image-captions' },
+                  { text: 'DashaMail Footer Reskin and Security', link: '/r7-dashamail-footer' }
+                ]
+              },
+              {
+                text: 'PHP / Legacy',
+                collapsed: false,
+                items: [
+                  { text: 'Protecting the Company Creation Form', link: '/contact-create-page' }
+                ]
+              },
+              {
+                text: 'ModX',
+                collapsed: true,
+                items: [
+                  { text: 'ModX Case #1', link: '/modx-case-1' },
+                  { text: 'ModX Case #2', link: '/modx-case-2' }
+                ]
+              }
             ]
           }
         ],
 
-        socialLinks: [
-          { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-        ]
       }
     },
     ru: {
@@ -50,8 +121,9 @@ export default defineConfig({
         
         nav: [
           { text: 'Главная', link: '/ru/' },
-          { text: 'Q&A', link: '/ru/faq' },
-          { text: 'Примеры', link: '/ru/markdown-examples' }
+          { text: 'Проекты', link: '/ru/#projects' },
+          { text: 'Обо мне', link: '/ru/about-me' },
+          { text: 'Q&A', link: '/ru/faq' }
         ],
 
         sidebar: [
@@ -116,19 +188,9 @@ export default defineConfig({
                 ]
               }
             ]
-          },          
-          {
-            text: 'Примеры',
-            items: [
-              { text: 'Примеры Markdown', link: '/ru/markdown-examples' },
-              { text: 'Примеры Runtime API', link: '/ru/api-examples' }
-            ]
           }
         ],
 
-        socialLinks: [
-          { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-        ]
       }
     }
   }

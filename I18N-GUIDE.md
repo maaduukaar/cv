@@ -1,53 +1,56 @@
-# Инструкция по работе с многоязычным сайтом VitePress
+# Working with a Multilingual VitePress Site
 
-## Структура проекта
+## Project Structure
 
-```
+```text
 docs/
 ├── .vitepress/
-│   └── config.mts          # Конфигурация с настройками locales
-├── index.md                # Главная страница (английская, по умолчанию)
-├── markdown-examples.md    # Английская версия
-├── api-examples.md         # Английская версия
-└── ru/                     # Папка для русского языка
-    ├── index.md            # Главная страница (русская)
-    ├── markdown-examples.md # Русская версия
-    └── api-examples.md     # Русская версия
+│   └── config.mts           # Configuration with locale settings
+├── index.md                 # Home page (English by default)
+├── about-me.md              # English version
+├── contact-create-page.md   # English version
+└── ru/                      # Russian-language directory
+    ├── index.md             # Russian home page
+    ├── about-me.md          # Russian version
+    └── contact-create-page.md # Russian version
 ```
 
-## Как это работает
+## How It Works
 
-1. **Английская версия** (root locale):
-   - Файлы находятся в корне папки `docs/`
-   - Доступны по адресу: `http://localhost:5173/`
-   - Пример: `http://localhost:5173/markdown-examples`
+1. **English version** (root locale):
+   - Files are located in the `docs/` root directory.
+   - Available at: `http://localhost:5173/`
+   - Example: `http://localhost:5173/about-me`
 
-2. **Русская версия** (/ru/ locale):
-   - Файлы находятся в папке `docs/ru/`
-   - Доступны по адресу: `http://localhost:5173/ru/`
-   - Пример: `http://localhost:5173/ru/markdown-examples`
+2. **Russian version** (`/ru/` locale):
+   - Files are located in the `docs/ru/` directory.
+   - Available at: `http://localhost:5173/ru/`
+   - Example: `http://localhost:5173/ru/about-me`
 
-3. **Переключатель языков**:
-   - Появляется автоматически в навигационной панели (справа вверху)
-   - Позволяет переключаться между языками
+3. **Language switcher**:
+   - Appears automatically in the navigation bar at the top right.
+   - Allows visitors to switch between languages.
 
-## Добавление новой страницы
+## Adding a New Page
 
-### Для английской версии:
-1. Создайте файл в `docs/`, например `docs/about.md`
-2. Добавьте ссылку в `config.mts` в секцию `locales.root.themeConfig.nav` или `sidebar`
+### English Version
 
-### Для русской версии:
-1. Создайте файл в `docs/ru/`, например `docs/ru/about.md`
-2. Добавьте ссылку в `config.mts` в секцию `locales.ru.themeConfig.nav` или `sidebar`
+1. Create a file in `docs/`, for example `docs/about.md`.
+2. Add a link to the `locales.root.themeConfig.nav` or `sidebar` section in `config.mts`.
 
-## Пример добавления страницы "О себе"
+### Russian Version
 
-### 1. Создать файлы:
-- `docs/about.md` (английская версия)
-- `docs/ru/about.md` (русская версия)
+1. Create a file in `docs/ru/`, for example `docs/ru/about.md`.
+2. Add a link to the `locales.ru.themeConfig.nav` or `sidebar` section in `config.mts`.
 
-### 2. Обновить config.mts:
+## Example: Adding an “About” Page
+
+### 1. Create the Files
+
+- `docs/about.md` — English version
+- `docs/ru/about.md` — Russian version
+
+### 2. Update `config.mts`
 
 ```typescript
 locales: {
@@ -56,8 +59,8 @@ locales: {
     themeConfig: {
       nav: [
         { text: 'Home', link: '/' },
-        { text: 'About', link: '/about' },  // <- добавить
-        { text: 'Examples', link: '/markdown-examples' }
+        { text: 'About', link: '/about' }, // Add this entry
+        { text: 'Q&A', link: '/faq' }
       ],
       // ...
     }
@@ -67,8 +70,8 @@ locales: {
     themeConfig: {
       nav: [
         { text: 'Главная', link: '/ru/' },
-        { text: 'О себе', link: '/ru/about' },  // <- добавить
-        { text: 'Примеры', link: '/ru/markdown-examples' }
+        { text: 'О себе', link: '/ru/about' }, // Add this entry
+        { text: 'Q&A', link: '/ru/faq' }
       ],
       // ...
     }
@@ -76,13 +79,13 @@ locales: {
 }
 ```
 
-## Полезные ссылки
+## Useful Links
 
-- [Официальная документация VitePress i18n](https://vitepress.dev/ru/guide/i18n)
-- [Конфигурация темы по умолчанию](https://vitepress.dev/reference/default-theme-config)
+- [Official VitePress i18n documentation](https://vitepress.dev/guide/i18n)
+- [Default theme configuration](https://vitepress.dev/reference/default-theme-config)
 
-## Команды
+## Commands
 
-- `npm run docs:dev` - запустить dev-сервер
-- `npm run docs:build` - собрать сайт для продакшена
-- `npm run docs:preview` - предпросмотр собранного сайта
+- `npm run docs:dev` — start the development server
+- `npm run docs:build` — build the production site
+- `npm run docs:preview` — preview the production build
