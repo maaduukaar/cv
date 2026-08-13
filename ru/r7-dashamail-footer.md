@@ -2,21 +2,21 @@
 
 ![Рескин футера и форма подписки DashaMail — Р7 центр поддержки](/images/r7-dashamail-footer-preview.png)
 
-::: info 📋 Карточка проекта
+::: info <SolarIcon name="clipboard" /> Карточка проекта
 
 | | |
 |---|---|
 | **Стек** | WordPress, PHP 8, JavaScript (AJAX), DashaMail API, CSS3 |
 | **Роль** | Full-stack Developer / Security Auditor |
 | **Ключевые файлы** | `footer.php`, `dashamail/init.php`, `dashamail/dm.js`, `dashamail/forms/footer.php` |
-| **Сайт** | 🔗 [Р7 центр поддержки](https://support.r7-office.ru/) |
+| **Сайт** | <SolarIcon name="link" /> [Р7 центр поддержки](https://support.r7-office.ru/) |
 | **Результат** | Модернизация подвала, интеграция живой AJAX-формы и закрытие 4 уязвимостей безопасности |
 
 :::
 
 ---
 
-## 📌 Обзор проекта и ТЗ
+## <SolarIcon name="pin" /> Обзор проекта и ТЗ
 
 ### Исходное состояние и проблема
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 📋 Полный список задач
+## <SolarIcon name="clipboard" /> Полный список задач
 
 | № | Задача | Описание |
 |:---:|---|---|
@@ -48,7 +48,7 @@
 
 ---
 
-## ⚡ Технические решения и ключевые сложности
+## <SolarIcon name="bolt" /> Технические решения и ключевые сложности
 
 ### Сложность: Защита от спам-ботов через IP Rate-Limiting
 
@@ -56,7 +56,7 @@
 Даже при наличии `nonce`, боты могут генерировать массовые запросы на подписку, выжигая лимиты API-аккаунта DashaMail и перегружая сервер cURL-запросами.
 :::
 
-::: tip 💡 Решение: Transient IP Rate-Limiter
+::: tip <SolarIcon name="lightbulb" /> Решение: Transient IP Rate-Limiter
 Перед отправкой cURL-запроса в API DashaMail бэкенд проверяет количество вызовов с текущего IP-адреса пользователя через быстрый кэш WordPress (`transient`):
 
 ```php
@@ -83,11 +83,11 @@ function dm_check_rate_limit() {
 
 ---
 
-## 🛡️ Секьюрити-аудит модуля DashaMail (`dashamail-security-review.md`)
+## <SolarIcon name="shield" /> Секьюрити-аудит модуля DashaMail (`dashamail-security-review.md`)
 
-::: details 📋 Посмотреть полный отчёт по аудиту безопасности исходного кода
+::: details <SolarIcon name="clipboard" /> Посмотреть полный отчёт по аудиту безопасности исходного кода
 
-### ✅ Что было в порядке в исходном коде
+### <SolarIcon name="check" /> Что было в порядке в исходном коде
 * **Защита от прямого доступа к PHP-файлам:** Проверка `ABSPATH` в `init.php` и `forms/footer.php`.
 * **Экранирование URL в шаблоне:** Наличие `esc_url()` на путях к ассетам.
 * **Валидация email на сервере:** Использование `filter_var(..., FILTER_VALIDATE_EMAIL)` до передачи в API.
@@ -95,7 +95,7 @@ function dm_check_rate_limit() {
 
 ---
 
-### 🔴 Критичные уязвимости
+### <SolarIcon name="danger" /> Критичные уязвимости
 
 #### 1. API-ключ захардкожен в файле темы <Badge type="danger" text="Critical" />
 * **Файл:** `themes/r7/dashamail/init.php`
@@ -109,7 +109,7 @@ define( 'DM_LIST_ID', 12345 );
 
 ---
 
-### 🟡 Средние уязвимости
+### <SolarIcon name="danger" /> Средние уязвимости
 
 #### 1. Отсутствие CSRF-защиты (nonce) на AJAX-эндпоинте <Badge type="warning" text="Medium" />
 * **Файлы:** `init.php`, `dm.js`
@@ -139,7 +139,7 @@ curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
 
 ---
 
-### 🟢 Незначительные замечания
+### <SolarIcon name="check" /> Незначительные замечания
 
 #### 1. `$_POST['email']` без проверки наличия ключа
 * **Проблема:** Запрос без параметра `email` вызывал `Warning` в логах сервера.
@@ -151,7 +151,7 @@ curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
 
 ---
 
-### 📊 Итоговая сводка ревью безопасности
+### <SolarIcon name="chart" /> Итоговая сводка ревью безопасности
 
 | Проблема | Уровень рисков | Статус исправления |
 |---|---|:---:|
@@ -166,9 +166,9 @@ curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
 
 ---
 
-## 📋 Отчёт по результатам интеграции (`dashamail-footer-report.txt`)
+## <SolarIcon name="clipboard" /> Отчёт по результатам интеграции (`dashamail-footer-report.txt`)
 
-::: details 📋 Посмотреть полностью отчёт по файлам и результатам тестирования
+::: details <SolarIcon name="clipboard" /> Посмотреть полностью отчёт по файлам и результатам тестирования
 
 ### Список затронутых файлов темы
 * `themes/r7/functions.php` — активировано подключение модуля `dashamail` через `get_template_directory()`.
@@ -187,9 +187,9 @@ curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
 
 ---
 
-## 📈 Итоговые результаты
+## <SolarIcon name="chart" /> Итоговые результаты
 
-::: tip 🏆 Достижения проекта
+::: tip <SolarIcon name="trophy" /> Достижения проекта
 | Показатель | До доработки | После доработки |
 |---|---|---|
 | **Работоспособность футера** | Визуальный муляж без отправки | **100% живая подписка DashaMail по AJAX** |

@@ -3,6 +3,66 @@ outline: [2, 3]
 pageClass: contact-create-case
 ---
 
+<script setup>
+import { withBase } from 'vitepress'
+import { onBeforeUnmount, ref } from 'vue'
+
+const screenshotDialog = ref(null)
+const screenshotTrigger = ref(null)
+const activeScreenshot = ref({
+  src: '',
+  alt: '',
+  caption: '',
+  width: 0,
+  height: 0,
+})
+
+function openScreenshot(event, caption) {
+  const dialog = screenshotDialog.value
+  const image = event.currentTarget?.querySelector('img')
+
+  if (!dialog || !image || typeof dialog.showModal !== 'function') {
+    return
+  }
+
+  event.preventDefault()
+  screenshotTrigger.value = event.currentTarget
+  activeScreenshot.value = {
+    src: image.currentSrc || image.src,
+    alt: image.alt || '',
+    caption,
+    width: image.naturalWidth,
+    height: image.naturalHeight,
+  }
+
+  if (!dialog.open) {
+    dialog.showModal()
+    document.documentElement.classList.add('case-lightbox-open')
+  }
+}
+
+function closeScreenshot() {
+  screenshotDialog.value?.close()
+}
+
+function handleLightboxClick(event) {
+  if (event.target === event.currentTarget) {
+    closeScreenshot()
+  }
+}
+
+function handleLightboxClose() {
+  document.documentElement.classList.remove('case-lightbox-open')
+  const trigger = screenshotTrigger.value
+  screenshotTrigger.value = null
+  requestAnimationFrame(() => trigger?.focus({ preventScroll: true }))
+}
+
+onBeforeUnmount(() => {
+  document.documentElement.classList.remove('case-lightbox-open')
+})
+</script>
+
 # Защита страницы `/contact/create`
 
 <div class="case-tech-badges">
@@ -128,8 +188,8 @@ pageClass: contact-create-case
 
 <div class="case-screenshot-grid case-screenshot-grid--auth">
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/login.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/login.png" alt="Форма входа в защищённую область с логином, паролем и Яндекс SmartCaptcha" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/login.png')" @click="openScreenshot($event, 'Вход в защищённую область')">
+      <img :src="withBase('/images/contact-create-page/login.png')" alt="Форма входа в защищённую область с логином, паролем и Яндекс SmartCaptcha" width="602" height="612" loading="lazy">
     </a>
     <figcaption>
       <strong>Вход в защищённую область</strong>
@@ -137,8 +197,8 @@ pageClass: contact-create-case
     </figcaption>
   </figure>
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/two-factor-authentication.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/two-factor-authentication.png" alt="Форма ввода шестизначного кода двухфакторной аутентификации" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/two-factor-authentication.png')" @click="openScreenshot($event, 'Второй фактор')">
+      <img :src="withBase('/images/contact-create-page/two-factor-authentication.png')" alt="Форма ввода шестизначного кода двухфакторной аутентификации" width="503" height="657" loading="lazy">
     </a>
     <figcaption>
       <strong>Второй фактор</strong>
@@ -151,8 +211,8 @@ pageClass: contact-create-case
 
 <div class="case-screenshot-grid case-screenshot-grid--states">
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/duplicate-found.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/duplicate-found.png" alt="Предупреждение о найденном дубликате компании в Bitrix CRM" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/duplicate-found.png')" @click="openScreenshot($event, 'Дубликат найден')">
+      <img :src="withBase('/images/contact-create-page/duplicate-found.png')" alt="Предупреждение о найденном дубликате компании в Bitrix CRM" width="779" height="587" loading="lazy">
     </a>
     <figcaption>
       <strong>Дубликат найден</strong>
@@ -160,8 +220,8 @@ pageClass: contact-create-case
     </figcaption>
   </figure>
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/duplicate-check-unavailable.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/duplicate-check-unavailable.png" alt="Сообщение о недоступности проверки дубликатов с возможностью продолжить" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/duplicate-check-unavailable.png')" @click="openScreenshot($event, 'Проверка недоступна')">
+      <img :src="withBase('/images/contact-create-page/duplicate-check-unavailable.png')" alt="Сообщение о недоступности проверки дубликатов с возможностью продолжить" width="787" height="468" loading="lazy">
     </a>
     <figcaption>
       <strong>Проверка недоступна</strong>
@@ -169,8 +229,8 @@ pageClass: contact-create-case
     </figcaption>
   </figure>
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/crm-error.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/crm-error.png" alt="Сообщение об ошибке создания компании в Bitrix CRM" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/crm-error.png')" @click="openScreenshot($event, 'Ошибка Bitrix CRM')">
+      <img :src="withBase('/images/contact-create-page/crm-error.png')" alt="Сообщение об ошибке создания компании в Bitrix CRM" width="767" height="424" loading="lazy">
     </a>
     <figcaption>
       <strong>Ошибка Bitrix CRM</strong>
@@ -178,8 +238,8 @@ pageClass: contact-create-case
     </figcaption>
   </figure>
   <figure class="case-screenshot-card">
-    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/submission-success.png" target="_blank" rel="noopener">
-      <img src="/cv/images/contact-create-page/submission-success.png" alt="Успешная отправка формы со ссылкой на созданную карточку Bitrix CRM" loading="lazy">
+    <a class="case-screenshot-card__media" :href="withBase('/images/contact-create-page/submission-success.png')" @click="openScreenshot($event, 'Успешная отправка')">
+      <img :src="withBase('/images/contact-create-page/submission-success.png')" alt="Успешная отправка формы со ссылкой на созданную карточку Bitrix CRM" width="787" height="450" loading="lazy">
     </a>
     <figcaption>
       <strong>Успешная отправка</strong>
@@ -187,6 +247,26 @@ pageClass: contact-create-case
     </figcaption>
   </figure>
 </div>
+
+<dialog
+  ref="screenshotDialog"
+  class="case-lightbox"
+  aria-label="Увеличенный скриншот интерфейса"
+  aria-describedby="case-lightbox-caption"
+  @click="handleLightboxClick"
+  @close="handleLightboxClose"
+>
+  <button class="case-lightbox__close" type="button" aria-label="Закрыть увеличенное изображение" @click="closeScreenshot"><SolarIcon name="cross" :stroke-width="2" /></button>
+  <figure class="case-lightbox__figure">
+    <img
+      :src="activeScreenshot.src"
+      :alt="activeScreenshot.alt"
+      :width="activeScreenshot.width"
+      :height="activeScreenshot.height"
+    >
+    <figcaption id="case-lightbox-caption">{{ activeScreenshot.caption }}</figcaption>
+  </figure>
+</dialog>
 
 ## 📈 Итоговые результаты
 
@@ -2099,7 +2179,9 @@ function sanitizePdnCsvValue($text) {
 
 ::: details 🧪 Открыть все 152 тест-кейса
 
-<div class="case-source-path"><span>Источник</span><code>.tasks/done/000-auth-logs-2fa/QA/QA_TESTCASES.md</code></div>
+<div class="case-source-path case-qa-source"><span>Источник</span><code>.tasks/done/000-auth-logs-2fa/QA/QA_TESTCASES.md</code></div>
+
+<p class="case-table-scroll-hint"><SolarIcon name="transfer" /> На широком экране видны все колонки; на узком таблицы прокручиваются по горизонтали, а ID остаётся закреплённым.</p>
 
 #### Тест-кейсы для QA: `/contact/login` и `/contact/create`
 
