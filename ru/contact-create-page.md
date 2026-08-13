@@ -120,6 +120,74 @@ pageClass: contact-create-case
 Нужно учитывать связку ИНН+КПП — если в CRM уже есть компания с таким ИНН, но КПП отличается, это филиал, и его нужно разрешить добавить.
 :::
 
+## 🖼️ Интерфейс и ключевые состояния
+
+Публичные копии скриншотов очищены от реальных реквизитов компаний и CRM-идентификаторов. Нажмите на изображение, чтобы открыть его в полном размере.
+
+### Авторизация
+
+<div class="case-screenshot-grid case-screenshot-grid--auth">
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/login.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/login.png" alt="Форма входа в защищённую область с логином, паролем и Яндекс SmartCaptcha" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Вход в защищённую область</strong>
+      <span>Логин, пароль и Яндекс SmartCaptcha перед доступом к форме.</span>
+    </figcaption>
+  </figure>
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/two-factor-authentication.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/two-factor-authentication.png" alt="Форма ввода шестизначного кода двухфакторной аутентификации" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Второй фактор</strong>
+      <span>Email-код, таймер повторной отправки и отдельное подтверждение входа.</span>
+    </figcaption>
+  </figure>
+</div>
+
+### Проверка дубликатов и отправка формы
+
+<div class="case-screenshot-grid case-screenshot-grid--states">
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/duplicate-found.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/duplicate-found.png" alt="Предупреждение о найденном дубликате компании в Bitrix CRM" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Дубликат найден</strong>
+      <span>Ссылка на существующую CRM-карточку и заблокированная отправка.</span>
+    </figcaption>
+  </figure>
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/duplicate-check-unavailable.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/duplicate-check-unavailable.png" alt="Сообщение о недоступности проверки дубликатов с возможностью продолжить" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Проверка недоступна</strong>
+      <span>Fail-open сценарий: пользователь может явно продолжить без проверки.</span>
+    </figcaption>
+  </figure>
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/crm-error.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/crm-error.png" alt="Сообщение об ошибке создания компании в Bitrix CRM" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Ошибка Bitrix CRM</strong>
+      <span>Понятное сообщение пользователю без вывода внутренних технических деталей.</span>
+    </figcaption>
+  </figure>
+  <figure class="case-screenshot-card">
+    <a class="case-screenshot-card__media" href="/cv/images/contact-create-page/submission-success.png" target="_blank" rel="noopener">
+      <img src="/cv/images/contact-create-page/submission-success.png" alt="Успешная отправка формы со ссылкой на созданную карточку Bitrix CRM" loading="lazy">
+    </a>
+    <figcaption>
+      <strong>Успешная отправка</strong>
+      <span>После создания компании пользователь получает прямую ссылку на CRM-карточку.</span>
+    </figcaption>
+  </figure>
+</div>
+
 ## 📈 Итоговые результаты
 
 ::: tip 🏆 QA по заполненному отчёту
