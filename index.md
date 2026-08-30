@@ -137,6 +137,11 @@ Open case study
 </div>
 
 <nav class="home-more-projects" aria-label="More project case studies">
+<a :href="withBase('/r7-download-preview.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="rocket" :size="21" /></span>
+  <span><strong>Preview download landing</strong><small>14-OS catalog &amp; granular RBAC</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
 <a :href="withBase('/r7-category-faq.html')">
 <span class="home-more-projects__icon"><SolarIcon name="bolt" :size="21" /></span>
 <span><strong>Category FAQ template</strong><small>8.5× loading-speed improvement</small></span>

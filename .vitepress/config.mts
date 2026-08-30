@@ -74,6 +74,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                   { text: 'R7 Office Document Builder API', link: '/r7-document-api' },
+                  { text: 'Download Preview Landing & Early Access', link: '/r7-download-preview' },
                   { text: 'Category Template “FAQ: Questions and Answers”', link: '/r7-category-faq' },
                   { text: 'Image Alignment (.aligncenter)', link: '/r7-image-alignment' },
                   { text: 'Photo Caption Styling and Numbering', link: '/r7-image-captions' },
@@ -166,6 +167,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                   { text: 'Р7-Офис API Документ Конструктора', link: '/ru/r7-document-api' },
+                  { text: 'Лендинг скачивания превью-версий', link: '/ru/r7-download-preview' },
                   { text: 'Категорийный шаблон «FAQ: Вопросы-ответы»', link: '/ru/r7-category-faq' },
                   { text: 'Выравнивание изображений (.aligncenter)', link: '/ru/r7-image-alignment' },
                   { text: 'Оформление и нумерация подписей к фото', link: '/ru/r7-image-captions' },

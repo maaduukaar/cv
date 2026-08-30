@@ -137,6 +137,11 @@ decoding="async"
 </div>
 
 <nav class="home-more-projects" aria-label="Другие проектные кейсы">
+<a :href="withBase('/ru/r7-download-preview.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="rocket" :size="21" /></span>
+  <span><strong>Лендинг превью-версий</strong><small>Каталог 14 ОС и гранулярный RBAC</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
 <a :href="withBase('/ru/r7-category-faq.html')">
 <span class="home-more-projects__icon"><SolarIcon name="bolt" :size="21" /></span>
 <span><strong>Категорийный FAQ-шаблон</strong><small>Ускорение загрузки в 8.5 раза</small></span>
