@@ -67,6 +67,18 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Web Applications',
+            items: [
+              {
+                text: 'Telegram Mini Apps',
+                collapsed: false,
+                items: [
+                  { text: 'Priya Sleep: Baby Sleep Tracker', link: '/priya-sleep' }
+                ]
+              }
+            ]
+          },
+          {
             text: 'Website Enhancements',
             items: [
               {
@@ -139,6 +151,18 @@ export default defineConfig({
             text: 'Автоматизация',
             items: [
               { text: 'Обработка контента', link: '/ru/content-processing' }
+            ]
+          },
+          {
+            text: 'Веб-приложения',
+            items: [
+              {
+                text: 'Telegram Mini Apps',
+                collapsed: false,
+                items: [
+                  { text: 'Прия Спит: Трекер сна в Telegram', link: '/ru/priya-sleep' }
+                ]
+              }
             ]
           },
           {

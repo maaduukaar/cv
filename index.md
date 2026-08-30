@@ -137,6 +137,11 @@ Open case study
 </div>
 
 <nav class="home-more-projects" aria-label="More project case studies">
+<a :href="withBase('/priya-sleep.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="cpu" :size="21" /></span>
+  <span><strong>Priya Sleep: Telegram Mini App</strong><small>Baby sleep tracker &amp; alert bot</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
 <a :href="withBase('/r7-download-preview.html')">
   <span class="home-more-projects__icon"><SolarIcon name="rocket" :size="21" /></span>
   <span><strong>Preview download landing</strong><small>14-OS catalog &amp; granular RBAC</small></span>
