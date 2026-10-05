@@ -5,6 +5,10 @@ outline: [2, 3]
 pageClass: project-case editing-case
 ---
 
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 # Из инженерного текста — в понятную инструкцию
 
 <div class="case-tech-badges"><Badge type="tip" text="Техническая редактура" /> <Badge type="info" text="SSO · Keycloak · LDAP" /> <Badge type="info" text="Confluence / WordPress" /></div>
@@ -31,6 +35,8 @@ pageClass: project-case editing-case
 Исходный материал содержал последовательность настройки, команды и скриншоты, но требовал редакторской подготовки. Фразы «открываем», «укажите» и «можем создать» чередовались; встречались опечатки в названиях элементов интерфейса, неправильные падежи, разговорные обороты и неясные условия перехода к следующему шагу. Экспорт из Confluence также переносил служебную разметку и изображения без подписей.
 
 Задача — сделать процедуру удобнее для выполнения: читатель должен быстро находить нужное поле, понимать условие следующего действия и отличать объяснение от команды. Для этого я работал и с языком, и со структурой документа.
+
+<div class="editing-result"><SolarIcon name="paperclip" :size="28" /><div><strong>Исходная статья целиком</strong><p>PDF с полной версией статьи до редактуры. Откроется в новой вкладке.</p><a :href="withBase('/files/r7-sso-editing/R7TEC-45036555-051026-1600-283.pdf')" target="_blank" rel="noopener noreferrer">Открыть исходную статью · PDF <SolarIcon name="arrow-right" /></a></div></div>
 
 ## <SolarIcon name="clipboard" /> Что было сделано
 

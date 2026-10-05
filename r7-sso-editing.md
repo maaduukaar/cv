@@ -5,6 +5,10 @@ outline: [2, 3]
 pageClass: project-case editing-case
 ---
 
+<script setup>
+import { withBase } from 'vitepress'
+</script>
+
 # From an engineer’s draft to a usable guide
 
 <div class="case-tech-badges"><Badge type="tip" text="Technical editing" /> <Badge type="info" text="SSO · Keycloak · LDAP" /> <Badge type="info" text="Confluence / WordPress" /></div>
@@ -31,6 +35,8 @@ An SSO configuration guide for R7 Disk, Keycloak and ALD Pro LDAP user synchroni
 The source contained the configuration sequence, commands and screenshots, but needed editorial preparation. It mixed “we open,” “enter” and “we can create”; included misspelled UI labels, case errors, colloquial expressions and vague conditions for proceeding. The Confluence export also carried platform-specific markup and uncaptioned images.
 
 The goal was to make the procedure easier to follow: help readers find the right field, understand when to proceed and distinguish an explanation from an instruction. This required work on both language and document structure.
+
+<div class="editing-result"><SolarIcon name="paperclip" :size="28" /><div><strong>The complete original article</strong><p>The full article in Russian before editing, saved as a PDF. Opens in a new tab.</p><a :href="withBase('/files/r7-sso-editing/R7TEC-45036555-051026-1600-283.pdf')" target="_blank" rel="noopener noreferrer">Open the original article · PDF <SolarIcon name="arrow-right" /></a></div></div>
 
 ## <SolarIcon name="clipboard" /> Editorial work
 
