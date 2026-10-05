@@ -47,7 +47,8 @@ export default defineConfig({
             text: 'Technical Writing & Editing',
             items: [
               { text: 'Editorial approach', link: '/technical-writing' },
-              { text: 'R7 Disk SSO guide: before & after', link: '/r7-sso-editing' }
+              { text: 'R7 Disk SSO guide: before & after', link: '/r7-sso-editing' },
+              { text: 'Spreadsheet Editor documentation QA', link: '/r7-table-editor-audit' }
             ]
           },
           {
@@ -168,7 +169,8 @@ export default defineConfig({
             text: 'Техническое писательство и редактура',
             items: [
               { text: 'Работа с текстом', link: '/ru/technical-writing' },
-              { text: 'Инструкция по SSO: было / стало', link: '/ru/r7-sso-editing' }
+              { text: 'Инструкция по SSO: было / стало', link: '/ru/r7-sso-editing' },
+              { text: 'Тестирование справки редактора таблиц', link: '/ru/r7-table-editor-audit' }
             ]
           },
           {

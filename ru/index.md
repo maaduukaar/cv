@@ -204,6 +204,21 @@ decoding="async"
 <p class="home-writing-card__caption">Названия кнопок, полей и атрибутов — часть инструкции.</p>
 </div>
 </article>
+<article class="home-writing-card home-writing-card--audit">
+<div class="home-writing-card__content">
+<div class="home-project-card__meta"><span>Documentation QA</span><span>Р7-Офис</span></div>
+<h3>Тестирование справки редактора таблиц</h3>
+<p>Постатейный аудит: фактические ошибки, точность действий, проверка сценариев в редакторе, иллюстрации и переходы со старой справки. Реальные примеры и полный реестр проверенных материалов.</p>
+<div class="home-project-card__facts"><span><strong>89</strong> статей в отчёте</span><span><strong>14</strong> тематических блоков</span><span><strong>30</strong> редиректов</span></div>
+<a class="home-card-link" :href="withBase('/ru/r7-table-editor-audit.html')">Смотреть кейс <SolarIcon name="arrow-right" :size="19" /></a>
+</div>
+<div class="home-writing-card__sample" aria-label="Примеры фактических ошибок">
+<p class="home-section__eyebrow">Проверить смысл и действие</p>
+<div class="home-writing-sample"><span>Было</span><del>4 месяца в квартале</del><del>Левый клик</del><del>Нечисловые ячейки</del></div>
+<div class="home-writing-sample home-writing-sample--after"><span>Стало</span><strong>3 месяца в квартале</strong><strong>Правый клик</strong><strong>Непустые ячейки</strong></div>
+<p class="home-writing-card__caption">Уточнения из статей о группировке, диаграммах и подсчёте значений в сводной таблице.</p>
+</div>
+</article>
 <a class="home-card-link home-writing-overview" :href="withBase('/ru/technical-writing.html')">О работе с текстом <SolarIcon name="arrow-right" :size="19" /></a>
 </section>
 

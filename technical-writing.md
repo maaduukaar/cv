@@ -20,6 +20,12 @@ I turn complex technical material into clear instructions, knowledge-base articl
 <article><SolarIcon name="document" :size="24" /><h3>Publication</h3><p>Clean WordPress HTML, formatted code, images and notes.</p></article>
 </div>
 
+## Case study: testing the Spreadsheet Editor documentation
+
+An article-by-article R7 Office help audit: 89 unique articles, scenario checks in the editor, factual and language errors, illustrations and 30 restored redirects from legacy material.
+
+<div class="editing-result"><SolarIcon name="test" :size="28" /><div><strong>Can a reader follow the procedure and get the right result?</strong><p>Function, action and interface checks. Macro assignment, the shape-connector issue and a complete register of 89 articles.</p><a :href="withBase('/r7-table-editor-audit.html')">Read the case study <SolarIcon name="arrow-right" /></a></div></div>
+
 ## Case study: editing an SSO guide
 
 R7 Disk configuration via Keycloak and ALD Pro LDAP. Real editorial changes—from `Sing In` and `Tittle` to instruction wording, certificate notes and publication preparation for 31 screenshots.

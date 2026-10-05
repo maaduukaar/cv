@@ -204,6 +204,21 @@ Open case study
 <p class="home-writing-card__caption">Button, field and attribute names are part of the instruction.</p>
 </div>
 </article>
+<article class="home-writing-card home-writing-card--audit">
+<div class="home-writing-card__content">
+<div class="home-project-card__meta"><span>Documentation QA</span><span>R7 Office</span></div>
+<h3>Testing the Spreadsheet Editor help</h3>
+<p>An article-by-article audit: factual errors, precise actions, scenario checks in the editor, illustrations and legacy redirects. Real examples and a complete review register.</p>
+<div class="home-project-card__facts"><span><strong>89</strong> articles in the report</span><span><strong>14</strong> topic groups</span><span><strong>30</strong> redirects</span></div>
+<a class="home-card-link" :href="withBase('/r7-table-editor-audit.html')">Open case study <SolarIcon name="arrow-right" :size="19" /></a>
+</div>
+<div class="home-writing-card__sample" aria-label="Examples of factual errors">
+<p class="home-section__eyebrow">Check the meaning and the action</p>
+<div class="home-writing-sample"><span>Before</span><del>4 months per quarter</del><del>Left-click</del><del>Non-numeric cells</del></div>
+<div class="home-writing-sample home-writing-sample--after"><span>After</span><strong>3 months per quarter</strong><strong>Right-click</strong><strong>Non-empty cells</strong></div>
+<p class="home-writing-card__caption">Corrections from the date-grouping, chart and pivot-table counting guides.</p>
+</div>
+</article>
 <a class="home-card-link home-writing-overview" :href="withBase('/technical-writing.html')">About my editorial work <SolarIcon name="arrow-right" :size="19" /></a>
 </section>
 
