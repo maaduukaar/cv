@@ -137,6 +137,16 @@ decoding="async"
 </div>
 
 <nav class="home-more-projects" aria-label="Другие проектные кейсы">
+<a :href="withBase('/ru/pdf-to-audiobook.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="speaker" :size="21" /></span>
+  <span><strong>pdf2audiobook: интерактивная CLI</strong><small>PDF в MP3, OCR fallback и надёжная пакетная TTS-генерация</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
+<a :href="withBase('/ru/bibliobot.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="layers" :size="21" /></span>
+  <span><strong>BiblioBot: книги по подписке</strong><small>Telegram-бот, Google Drive CMS и рекуррентные платежи</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
 <a :href="withBase('/ru/priya-sleep.html')">
   <span class="home-more-projects__icon"><SolarIcon name="cpu" :size="21" /></span>
   <span><strong>Priya Sleep: Telegram Mini App</strong><small>Трекер детского сна и бот оповещений</small></span>
@@ -168,6 +178,33 @@ decoding="async"
         <SolarIcon name="arrow-right" :size="18" />
       </a>
 </nav>
+</section>
+
+<section id="writing" class="home-section home-writing">
+<header class="home-section__header">
+<div class="home-section__icon"><SolarIcon name="notes" :size="22" /></div>
+<div>
+<p class="home-section__eyebrow">Работа с текстом</p>
+<h2>Техническое писательство и редактура</h2>
+<p>Помогаю превратить сложный технический материал в понятный текст: инструкции, статьи базы знаний и документацию для пользователей и администраторов.</p>
+</div>
+</header>
+<article class="home-writing-card">
+<div class="home-writing-card__content">
+<div class="home-project-card__meta"><span>Техническая редактура</span><span>SSO / Keycloak / LDAP</span></div>
+<h3>Из инженерного текста — в понятную инструкцию</h3>
+<p>Редактура статьи для базы знаний Р7-Офис: исправление ошибок, единая терминология, ясные шаги и подготовка к публикации. Восемь примеров «было / стало» с объяснением каждой правки.</p>
+<div class="home-project-card__facts"><span><strong>31</strong> скриншот с подписью</span><span><strong>6</strong> блоков кода сохранены</span></div>
+<a class="home-card-link" :href="withBase('/ru/r7-sso-editing.html')">Смотреть разбор <SolarIcon name="arrow-right" :size="19" /></a>
+</div>
+<div class="home-writing-card__sample" aria-label="Примеры исправлений">
+<p class="home-section__eyebrow">Точность начинается со слова</p>
+<div class="home-writing-sample"><span>Было</span><del>Sing In</del><del>conntction url</del><del>Tittle</del></div>
+<div class="home-writing-sample home-writing-sample--after"><span>Стало</span><strong>Sign In</strong><strong>Connection URL</strong><strong>title</strong></div>
+<p class="home-writing-card__caption">Названия кнопок, полей и атрибутов — часть инструкции.</p>
+</div>
+</article>
+<a class="home-card-link home-writing-overview" :href="withBase('/ru/technical-writing.html')">О работе с текстом <SolarIcon name="arrow-right" :size="19" /></a>
 </section>
 
 <section class="home-section home-expertise">

@@ -137,6 +137,16 @@ Open case study
 </div>
 
 <nav class="home-more-projects" aria-label="More project case studies">
+<a :href="withBase('/pdf-to-audiobook.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="speaker" :size="21" /></span>
+  <span><strong>pdf2audiobook: Interactive CLI</strong><small>PDF-to-MP3 conversion, OCR fallback, and resilient TTS batching</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
+<a :href="withBase('/bibliobot.html')">
+  <span class="home-more-projects__icon"><SolarIcon name="layers" :size="21" /></span>
+  <span><strong>BiblioBot: book subscriptions</strong><small>Telegram bot, Google Drive CMS, and recurring payments</small></span>
+  <SolarIcon name="arrow-right" :size="18" />
+</a>
 <a :href="withBase('/priya-sleep.html')">
   <span class="home-more-projects__icon"><SolarIcon name="cpu" :size="21" /></span>
   <span><strong>Priya Sleep: Telegram Mini App</strong><small>Baby sleep tracker &amp; alert bot</small></span>
@@ -168,6 +178,33 @@ Open case study
         <SolarIcon name="arrow-right" :size="18" />
       </a>
 </nav>
+</section>
+
+<section id="writing" class="home-section home-writing">
+<header class="home-section__header">
+<div class="home-section__icon"><SolarIcon name="notes" :size="22" /></div>
+<div>
+<p class="home-section__eyebrow">Working with text</p>
+<h2>Technical writing & editing</h2>
+<p>I turn complex technical material into clear instructions, knowledge-base articles and documentation for users and administrators.</p>
+</div>
+</header>
+<article class="home-writing-card">
+<div class="home-writing-card__content">
+<div class="home-project-card__meta"><span>Technical editing</span><span>SSO / Keycloak / LDAP</span></div>
+<h3>From an engineer’s draft to a usable guide</h3>
+<p>Editing an R7 Office knowledge-base guide: corrected errors, consistent terminology, clearer steps and publication preparation. Eight before-and-after examples with explanations.</p>
+<div class="home-project-card__facts"><span><strong>31</strong> captioned screenshots</span><span><strong>6</strong> code blocks preserved</span></div>
+<a class="home-card-link" :href="withBase('/r7-sso-editing.html')">Explore the edits <SolarIcon name="arrow-right" :size="19" /></a>
+</div>
+<div class="home-writing-card__sample" aria-label="Examples of corrections">
+<p class="home-section__eyebrow">Precision starts with a word</p>
+<div class="home-writing-sample"><span>Before</span><del>Sing In</del><del>conntction url</del><del>Tittle</del></div>
+<div class="home-writing-sample home-writing-sample--after"><span>After</span><strong>Sign In</strong><strong>Connection URL</strong><strong>title</strong></div>
+<p class="home-writing-card__caption">Button, field and attribute names are part of the instruction.</p>
+</div>
+</article>
+<a class="home-card-link home-writing-overview" :href="withBase('/technical-writing.html')">About my editorial work <SolarIcon name="arrow-right" :size="19" /></a>
 </section>
 
 <section class="home-section home-expertise">

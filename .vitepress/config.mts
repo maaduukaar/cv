@@ -30,6 +30,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Projects', link: '/#projects' },
+          { text: 'Writing & editing', link: '/technical-writing' },
           { text: 'About', link: '/about-me' },
           { text: 'Q&A', link: '/faq' }
         ],
@@ -43,9 +44,17 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Technical Writing & Editing',
+            items: [
+              { text: 'Editorial approach', link: '/technical-writing' },
+              { text: 'R7 Disk SSO guide: before & after', link: '/r7-sso-editing' }
+            ]
+          },
+          {
             text: 'Automation',
             items: [
-              { text: 'Content Processing', link: '/content-processing' }
+              { text: 'Content Processing', link: '/content-processing' },
+              { text: 'PDF to Audiobook: Interactive CLI', link: '/pdf-to-audiobook' }
             ]
           },
           {
@@ -74,6 +83,13 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                   { text: 'Priya Sleep: Baby Sleep Tracker', link: '/priya-sleep' }
+                ]
+              },
+              {
+                text: 'Telegram Bots',
+                collapsed: false,
+                items: [
+                  { text: 'BiblioBot: Book subscriptions', link: '/bibliobot' }
                 ]
               }
             ]
@@ -135,6 +151,7 @@ export default defineConfig({
         nav: [
           { text: 'Главная', link: '/ru/' },
           { text: 'Проекты', link: '/ru/#projects' },
+          { text: 'Работа с текстом', link: '/ru/technical-writing' },
           { text: 'Обо мне', link: '/ru/about-me' },
           { text: 'Q&A', link: '/ru/faq' }
         ],
@@ -148,9 +165,17 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Техническое писательство и редактура',
+            items: [
+              { text: 'Работа с текстом', link: '/ru/technical-writing' },
+              { text: 'Инструкция по SSO: было / стало', link: '/ru/r7-sso-editing' }
+            ]
+          },
+          {
             text: 'Автоматизация',
             items: [
-              { text: 'Обработка контента', link: '/ru/content-processing' }
+              { text: 'Обработка контента', link: '/ru/content-processing' },
+              { text: 'PDF в MP3-аудиокнигу: интерактивная CLI', link: '/ru/pdf-to-audiobook' }
             ]
           },
           {
@@ -161,6 +186,13 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                   { text: 'Прия Спит: Трекер сна в Telegram', link: '/ru/priya-sleep' }
+                ]
+              },
+              {
+                text: 'Telegram Bots',
+                collapsed: false,
+                items: [
+                  { text: 'BiblioBot: Подписки на книги', link: '/ru/bibliobot' }
                 ]
               }
             ]
